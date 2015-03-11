@@ -21,11 +21,14 @@ public class Main {
 			while (action != null) {
 				action = dataIn.readUTF();
 				vitesse = dataIn.readUTF();
-				if (action.equals("stop")) {
-					thread.interrupt();
-				} else {
+				if (action.equals("accepter") || action.equals("avancer") || action.equals("droite") || action.equals("gauche") || action.equals("reculer")) {
 					thread = new Thread(new Action(action, vitesse));
 					thread.start();
+				} else {
+					if(thread != null)
+					{
+						thread.interrupt();
+					}
 				}
 			}
 		} catch (Exception e) {

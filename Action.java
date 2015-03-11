@@ -14,6 +14,7 @@ public class Action implements Runnable {
 
 	public void run() {
 		pilot = new DifferentialPilot(5.5, 11.59, Motor.A, Motor.B);
+		
 		pilot.setTravelSpeed(vitesse);
 		
 		System.out.println(action);
@@ -26,14 +27,16 @@ public class Action implements Runnable {
 			pilot.stop();
 		}
 		if (action.equals("droite")) {
+			pilot.setTravelSpeed(vitesse/2);
 			while (!Thread.currentThread().isInterrupted()) {
-				pilot.rotateRight();
+				pilot.rotateLeft();
 			}
 			pilot.stop();
 		}
 		if (action.equals("gauche")) {
+			pilot.setTravelSpeed(vitesse/2);
 			while (!Thread.currentThread().isInterrupted()) {
-				pilot.rotateLeft();
+				pilot.rotateRight();
 			}
 			pilot.stop();
 		}
