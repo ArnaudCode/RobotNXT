@@ -22,6 +22,10 @@ public class Main {
 				action = dataIn.readUTF();
 				vitesse = dataIn.readUTF();
 				if (action.equals("accepter") || action.equals("avancer") || action.equals("droite") || action.equals("gauche") || action.equals("reculer")) {
+					if(thread != null)
+					{
+						thread.interrupt();
+					}
 					thread = new Thread(new Action(action, vitesse));
 					thread.start();
 				} else {
